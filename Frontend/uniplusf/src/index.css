@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+@theme {
+  --color-maroon: #5C0A0A;
+  --color-gold:   #F4B626;
+  --color-ink:    #0A0A0A;   
+  --color-paper:  #ffffff;   
+}
+
+
+:root {
+  color-scheme: light dark;
+}
+html, body, #root {
+  height: 100%;
+}

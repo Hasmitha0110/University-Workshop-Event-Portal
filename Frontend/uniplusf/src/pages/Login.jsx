@@ -1,0 +1,70 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../lib/api";
+import { useAuth } from "../context/AuthContext";
+
+export default function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [err, setErr] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setErr("");
+    try {
+      const res = await api.post("/api/auth/login", { email, password });
+      // Backend returns { token, adminId, name }
+      login({
+        token: res.data.token,
+        name: res.data.name,
+        adminId: res.data.adminId,
+      });
+      navigate("/admin");
+    } catch (e) {
+      setErr(e?.response?.data || "Login failed");
+    }
+  }
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-10">
+      <h1 className="text-3xl font-bold mb-6">Admin Login</h1>
+
+      <form onSubmit={handleSubmit} className="bg-ink/60 border border-white/10 rounded-xl p-6 space-y-4">
+        {err && <div className="text-red-400 text-sm">{String(err)}</div>}
+
+        <div className="space-y-1">
+          <label className="text-sm text-white/80">Email</label>
+          <input
+            type="email"
+            className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@university.edu"
+            required
+          />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-sm text-white/80">Password</label>
+          <input
+            type="password"
+            className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-gold text-ink font-semibold rounded-lg py-2 hover:opacity-90"
+        >
+          Login
+        </button>
+      </form>
+    </main>
+  );
+}
