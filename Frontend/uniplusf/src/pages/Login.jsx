@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../lib/api";
-import { useAuth } from "../context/AuthContext";
+import api from "../bkendintigration/api";
+import { useAuth } from "../bkendintigration/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,8 +28,9 @@ export default function Login() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-6 py-10">
-      <h1 className="text-3xl font-bold mb-6">Admin Login</h1>
+    <main className="max-w-md mx-auto px-1 py-15">
+      <h1 className="text-3xl font-bold mb-1">Admin Login</h1>
+      <p className="text-sm text-white/60 mb-6">Enter your credentials to access the admin privileges.</p>
 
       <form onSubmit={handleSubmit} className="bg-ink/60 border border-white/10 rounded-xl p-6 space-y-4">
         {err && <div className="text-red-400 text-sm">{String(err)}</div>}
@@ -60,10 +61,14 @@ export default function Login() {
 
         <button
           type="submit"
-          className="w-full bg-gold text-ink font-semibold rounded-lg py-2 hover:opacity-90"
+          className="w-full bg-gold text-ink font-semibold rounded-lg py-2 hover:opacity-90 hover:scale-[0.98] transition hover:text-maroon"
         >
           Login
         </button>
+
+        <p className="text-sm text-white/80">
+        Don't have access? Register here.
+        </p>
       </form>
     </main>
   );

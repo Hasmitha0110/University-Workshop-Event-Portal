@@ -1,5 +1,5 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../bkendintigration/AuthContext";
 import logoUrl from "../assets/LogoUL.png"; 
 
 export default function Navbar() {
@@ -7,7 +7,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const linkBase =
-    "px-4 py-2 text-sm font-medium hover:text-gold transition-colors";
+    "px-4 py-1 text-sm font-medium hover:text-gold transition-colors";
   const activeLink =
     "text-gold border-b-2 border-gold";
   const inactiveLink =
@@ -18,11 +18,10 @@ export default function Navbar() {
       
       <div className="h-2 bg-maroon" />
 
-      <nav className="max-w-6xl mx-auto flex items-center justify-between gap-6 px-6 py-3">
+      <nav className="max-w-8xl mx-auto flex items-center justify-between gap-6 px-6 py-1">
         
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoUrl} alt="UNI+ logo" className="h-10 w-auto" />
-          <span className="text-xl font-semibold tracking-wide">UNI+</span>
+          <img src={logoUrl} alt="UNI+ logo" className="h-16 w-auto" />
         </Link>
 
         <ul className="flex items-center gap-2">
@@ -53,7 +52,7 @@ export default function Navbar() {
           {!isAuthed ? (
             <Link
               to="/login"
-              className="bg-gold text-ink px-4 py-2 rounded-lg font-semibold hover:opacity-90">Login as Admin
+              className="bg-gold text-ink px-4 py-2 rounded-lg font-semibold hover:opacity-90 hover:text-maroon">Login as Admin
             </Link>
           ) : (
             <>
@@ -65,7 +64,7 @@ export default function Navbar() {
                   logout();
                   navigate("/");
                 }}
-                className="bg-maroon text-paper px-3 py-2 rounded-lg font-semibold hover:opacity-90">Logout
+                className="bg-maroon text-paper px-3 py-2 rounded-lg font-semibold hover:opacity-90 hover:text-gold">Logout
               </button>
             </>
           )}
