@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../bkendintigration/api";
 import { useAuth } from "../bkendintigration/AuthContext";
 
@@ -28,12 +28,11 @@ export default function Login() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-1 py-15">
+    <main className="max-w-lg mx-auto px-1 py-15">
       <h1 className="text-3xl font-bold mb-1">Admin Login</h1>
       <p className="text-sm text-white/60 mb-6">Enter your credentials to access the admin privileges.</p>
 
       <form onSubmit={handleSubmit} className="bg-ink/60 border border-white/10 rounded-xl p-6 space-y-4">
-        {err && <div className="text-red-400 text-sm">{String(err)}</div>}
 
         <div className="space-y-1">
           <label className="text-sm text-white/80">Email</label>
@@ -66,8 +65,11 @@ export default function Login() {
           Login
         </button>
 
+        {err && <div className="text-red-400 text-sm">{String(err)}</div>}
+
         <p className="text-sm text-white/80">
-        Don't have access? Register here.
+        Don't have access?{" "}
+        <Link className="text-gold hover:text-maroon hover:underline" to="/register">Register here.</Link>
         </p>
       </form>
     </main>
