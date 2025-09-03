@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/browse" element={<BrowseEvents />} />
-        <Route path="/admin"element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}/>
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>}/>
       </Routes>

@@ -38,7 +38,7 @@ export default function Register() {
         <div className="max-w-lg mx-auto px-1 py-15">
             
                 <h1 className="text-3xl font-bold mb-1">Admin Register</h1>
-                <p className="text-sm text-white/60 mb-6">Enter your credentials to access the admin privileges.</p>
+                <p className="text-sm text-white/60 mb-6">Create a new administrator account to manage events.</p>
                 <form onSubmit={handleSubmit} className="bg-ink/60 border border-white/10 rounded-xl flex flex-col p-6 space-y-4">
 
                     <div className="space-y-1">
@@ -76,7 +76,7 @@ export default function Register() {
                     {message && <p className="text-red-400 text-sm">{message}</p>}
 
                     <p className="text-sm text-white/80">
-        Do you have an account?{" "}
+        Already have an account?{" "}
         <a className="text-gold hover:text-maroon hover:underline" href="/login">Login here.</a>
         </p>
 
