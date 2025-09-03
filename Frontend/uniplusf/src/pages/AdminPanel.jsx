@@ -120,7 +120,7 @@ export default function AdminPanel() {
   );
 
   return (
-    <main className="max-w-6xl mx-auto px-6 py-8 space-y-6">
+    <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
       {header}
 
       {loading && <div className="text-white/70">Loading events…</div>}
