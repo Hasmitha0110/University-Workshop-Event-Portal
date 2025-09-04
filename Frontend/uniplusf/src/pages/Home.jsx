@@ -111,15 +111,15 @@ export default function HomePage() {
         <div className="mt-12 bg-ink border border-white/10 rounded-2xl p-8">
           <h2 className="text-2xl font-bold text-gold mb-6">How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="text-center p-6 bg-black/20 rounded-lg">
-              <div className="w-12 h-12 bg-gold text-ink rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">1</div>
-              <h3 className="font-semibold text-white mb-2">Register</h3>
+            <div className="text-center p-6 bg-paper/10 rounded-lg">
+              <div className="w-12 h-12 bg-gold/80 text-ink rounded-full flex items-center justify-center mx-auto mb-2 font-bold text-xl">1</div>
+              <h3 className="font-semibold text-white mb-4">Register</h3>
               <p className="text-white/70">Submit your admin application with university credentials</p>
             </div>
             
-            <div className="text-center p-6 bg-black/20 rounded-lg">
-              <div className="w-12 h-12 bg-gold text-ink rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">2</div>
-              <h3 className="font-semibold text-white mb-2">Start Creating</h3>
+            <div className="text-center p-6 bg-paper/10 rounded-lg">
+              <div className="w-12 h-12 bg-gold/80 text-ink rounded-full flex items-center justify-center mx-auto mb-2 font-bold text-xl">2</div>
+              <h3 className="font-semibold text-white mb-4">Start Creating</h3>
               <p className="text-white/70">Plan and manage events for the university community</p>
             </div>
           </div>

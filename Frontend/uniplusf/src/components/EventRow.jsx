@@ -38,11 +38,11 @@ export default function EventRow({
   }, [open]);
 
   return (
-    <div className="border border-white/10 rounded-xl overflow-hidden bg-black/40">
+    <div className="border border-white/10 rounded-xl overflow-hidden bg-gradient-to-r from-maroon/60 to-ink">
       {/* Collapsed row */}
       <div className="flex items-center gap-3 p-4">
         {/* thumb */}
-        <div className="h-12 w-12 bg-white/10 rounded-md overflow-hidden shrink-0">
+        <div className="h-12 w-12 bg-gradient-to-r from-ink/60 to-paper/20 rounded-md overflow-hidden shrink-0">
           {event.imageUrl ? (
             <img src={event.imageUrl} alt="" className="h-full w-full object-cover" />
           ) : null}

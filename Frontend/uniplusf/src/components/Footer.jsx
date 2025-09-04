@@ -35,13 +35,13 @@ export default function Footer() {
             <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-white/70 hover:text-gold transition">Home</Link>
+                <a href="/" className="text-white/70 hover:text-gold transition">Home</a>
               </li>
               <li>
-                <Link to="/browse" className="text-white/70 hover:text-gold transition">Browse Events</Link>
+                <a href="/browse" className="text-white/70 hover:text-gold transition">Browse Events</a>
               </li>
               <li>
-                <Link to="/admin" className="text-white/70 hover:text-gold transition">Admin Dashboard</Link>
+                <a href="/admin" className="text-white/70 hover:text-gold transition">Admin Dashboard</a>
               </li>
             </ul>
           </div>
@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Contact Us</h4>
             <ul className="space-y-2 text-white/70">
-              <li>UniConnect+@engug.ruh.lk</li>
+              <li>uniplus@engug.ruh.lk</li>
               <li>+94 112 345 678</li>
               <li className="mt-4">Faculty Of Engineering, Hapugala</li>
             </ul>
