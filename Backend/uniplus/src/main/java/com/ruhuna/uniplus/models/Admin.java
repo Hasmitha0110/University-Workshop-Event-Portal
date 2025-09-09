@@ -43,7 +43,7 @@ public class Admin {
         this.password = password;
     }
 
-    //getters
+
     public Long getAdminId() {
         return adminId;
     }
@@ -80,7 +80,7 @@ public class Admin {
         return events;
     }
 
-    //setters
+
 
     public void setAdminId(Long adminId) {
         this.adminId = adminId;

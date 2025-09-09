@@ -1,4 +1,3 @@
-// src/ui/UpdateFormModal.jsx
 import { useEffect, useState } from "react";
 
 export default function UpdateFormModal({ eventId, initial, onSave, onClose }) {
@@ -51,15 +50,6 @@ export default function UpdateFormModal({ eventId, initial, onSave, onClose }) {
             onChange={(e) => setForm({ ...form, content: e.target.value })}
           />
         </div>
-
-        {/* <div>
-          <label className="text-sm text-white/80">Image URL</label>
-          <input
-            className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
-            value={form.imageUrl}
-            onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
-          />
-        </div> */}
 
         <div>
           <label className="text-sm text-white/80">Link</label>

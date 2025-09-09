@@ -1,4 +1,3 @@
-// src/pages/AdminDashboard.jsx
 import { useAuth } from "../bkendintigration/AuthContext";
 import { Link } from "react-router-dom";
 import AdminPanel from "../pages/AdminPanel";

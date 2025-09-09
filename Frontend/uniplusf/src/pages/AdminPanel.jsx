@@ -1,4 +1,3 @@
-
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "../bkendintigration/AuthContext";
 import api from "../bkendintigration/api";
@@ -46,7 +45,7 @@ export default function AdminPanel() {
   };
 
   const onSaveEvent = async (form) => {
-    // create or update based on presence of id
+    
     if (editingEvent?.eventId) {
       await api.put(`/api/events/${editingEvent.eventId}`, form);
     } else {

@@ -15,7 +15,7 @@ export default function Login() {
     setErr("");
     try {
       const res = await api.post("/api/auth/login", { email, password });
-      // Backend returns { token, adminId, name }
+      
       login({
         token: res.data.token,
         name: res.data.name,

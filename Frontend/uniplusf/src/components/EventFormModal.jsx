@@ -1,4 +1,3 @@
-// src/ui/EventFormModal.jsx
 import { useEffect, useState } from "react";
 
 export default function EventFormModal({ initial, onClose, onSave }) {
@@ -17,7 +16,7 @@ export default function EventFormModal({ initial, onClose, onSave }) {
         description: initial.description || "",
         venue: initial.venue || "",
         imageUrl: initial.imageUrl || "",
-        eventDate: initial.eventDate || "", // yyyy-mm-dd
+        eventDate: initial.eventDate || "",
       });
     }
   }, [initial]);
@@ -74,15 +73,6 @@ export default function EventFormModal({ initial, onClose, onSave }) {
             />
           </div>
         </div>
-
-        {/* <div>
-          <label className="text-sm text-white/80">Image URL</label>
-          <input
-            className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
-            value={form.imageUrl}
-            onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
-          />
-        </div> */}
 
         <div className="flex justify-end gap-2 pt-2">
           <button

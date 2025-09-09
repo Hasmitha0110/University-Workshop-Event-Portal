@@ -20,7 +20,7 @@ public class EventCreateRequest {
 
     }
 
-    //getters
+
     public String getTitle() {
         return title;
     }
@@ -42,7 +42,7 @@ public class EventCreateRequest {
     }
 
 
-    //setters
+
     public void setTitle(String title) {
         this.title = title;
     }

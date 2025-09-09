@@ -29,7 +29,7 @@ public class EventResponse {
         this.createdByName = createdByName;
     }
 
-   //getters
+
 
     public Long getEventId() {
         return eventId;
@@ -67,7 +67,7 @@ public class EventResponse {
         return createdByName;
     }
 
-    //setters
+
 
     public void setEventId(Long eventId) {
         this.eventId = eventId;

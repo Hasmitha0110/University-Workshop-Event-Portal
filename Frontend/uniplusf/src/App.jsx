@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import BrowseEvents from "./pages/BrowseEvents";
 import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
-import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
 import Footer from "./components/Footer";
 

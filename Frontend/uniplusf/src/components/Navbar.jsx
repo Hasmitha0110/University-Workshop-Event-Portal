@@ -71,7 +71,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Gold divider under navbar */}
       <div className="h-[3px] bg-gold" />
     </header>
   );

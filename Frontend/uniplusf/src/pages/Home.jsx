@@ -14,9 +14,8 @@ export default function HomePage() {
         const res = await api.get("/api/events");
         const data = res.data || [];
 
-        // Get current week range
         const now = new Date();
-        const day = now.getDay(); // 0 = Sun, 1 = Mon ...
+        const day = now.getDay(); 
         const monday = new Date(now);
         monday.setDate(now.getDate() - (day === 0 ? 6 : day - 1));
         monday.setHours(0, 0, 0, 0);
@@ -25,7 +24,6 @@ export default function HomePage() {
         sunday.setDate(monday.getDate() + 6);
         sunday.setHours(23, 59, 59, 999);
 
-        // Initialize weekdays
         const grouped = {
           Monday: [],
           Tuesday: [],
@@ -36,7 +34,6 @@ export default function HomePage() {
           Sunday: [],
         };
 
-        // Group events by weekday
         data.forEach((ev) => {
           const eventDate = new Date(ev.eventDate);
           if (eventDate >= monday && eventDate <= sunday) {
@@ -60,7 +57,7 @@ export default function HomePage() {
 
   return (
      <main className="max-w-9xl mx-auto px-8 py-10 space-y-16">
-      {/* Hero Section */}
+      
       <section className="text-center py-16 bg-gradient-to-r from-maroon to-gold rounded-2xl shadow-lg">
         <h1 className="text-5xl font-bold text-white mb-6">
           Welcome to UniPlus 🎓
@@ -75,7 +72,7 @@ export default function HomePage() {
               </Link>
       </section>
 
-      {/* Weekly Events */}
+      
       <h2 className="text-3xl pl-9 font-bold mb-6">This Week's Events</h2>
       <section className="max-w-7xl flex flex-col mx-auto">
         
@@ -106,7 +103,7 @@ export default function HomePage() {
           ))}
       </section>
 
-      {/* Info Cards */}
+      
       <section >
         <div className="mt-12 bg-ink border border-white/10 rounded-2xl p-8">
           <h2 className="text-2xl font-bold text-gold mb-6">How It Works</h2>

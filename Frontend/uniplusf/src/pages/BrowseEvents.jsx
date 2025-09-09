@@ -1,4 +1,3 @@
-// src/pages/BrowseEvents.jsx
 import { useEffect, useState } from "react";
 import api from "../bkendintigration/api";
 import EventRow from "../components/EventRow";
@@ -20,14 +19,12 @@ export default function BrowseEvents() {
       const res = await api.get(url);
       let data = res.data || [];
 
-      // filter by status
       if (status) {
         data = data.filter(
           (e) => e.status.toLowerCase() === status.toLowerCase()
         );
       }
 
-      // filter by date (exact match)
       if (date) {
         data = data.filter((e) => e.eventDate === date);
       }
@@ -48,7 +45,6 @@ export default function BrowseEvents() {
     <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
       <h1 className="text-3xl font-bold">Browse Events</h1>
 
-      {/* Filters */}
       <div className="flex flex-wrap gap-3 mt-4">
         <input
           type="text"
@@ -81,7 +77,6 @@ export default function BrowseEvents() {
         </button>
       </div>
 
-      {/* Results */}
       {loading && <div className="text-white/70">Loading…</div>}
       {!loading && !events.length && (
         <div className="text-white/70">No events found.</div>
@@ -91,7 +86,7 @@ export default function BrowseEvents() {
           <EventRow
             key={ev.eventId}
             event={ev}
-            canManage={false} // visitors cannot edit/delete
+            canManage={false} 
             onEdit={() => {}}
             onDelete={() => {}}
             onAddUpdate={() => {}}

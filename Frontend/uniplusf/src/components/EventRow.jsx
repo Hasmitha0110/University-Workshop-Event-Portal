@@ -1,4 +1,3 @@
-// src/ui/EventRow.jsx
 import { useEffect, useState } from "react";
 import api from "../bkendintigration/api";
 
@@ -39,16 +38,13 @@ export default function EventRow({
 
   return (
     <div className="border border-white/10 rounded-xl overflow-hidden bg-gradient-to-r from-maroon/60 to-ink">
-      {/* Collapsed row */}
       <div className="flex items-center gap-3 p-4">
-        {/* thumb */}
         <div className="h-12 w-12 bg-gradient-to-r from-ink/60 to-paper/20 rounded-md overflow-hidden shrink-0">
           {event.imageUrl ? (
             <img src={event.imageUrl} alt="" className="h-full w-full object-cover" />
           ) : null}
         </div>
 
-        {/* main info */}
         <div className="flex-1">
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="font-semibold">{event.title}</h3>
@@ -64,7 +60,6 @@ export default function EventRow({
           </div>
         </div>
 
-        {/* actions */}
         <div className="flex items-center gap-2">
           <button
             onClick={() => setOpen((v) => !v)}
@@ -98,7 +93,6 @@ export default function EventRow({
         </div>
       </div>
 
-      {/* Expanded details */}
       {open && (
         <div className="px-4 pb-4">
           <div className="text-white/80 text-sm mb-2">{event.description}</div>
@@ -118,9 +112,7 @@ export default function EventRow({
                       {new Date(u.createdAt).toLocaleString()}
                     </div>
                   </div>
-                  {/* {u.imageUrl && (
-                    <img src={u.imageUrl} alt="" className="mt-2 max-h-40 rounded" />
-                  )} */}
+                
                   <div className="text-sm text-white/80 mt-1">{u.content}</div>
                   {u.link && (
                     <a className="text-gold text-sm hover:underline" href={u.link} target="_blank" rel="noreferrer">
@@ -128,7 +120,6 @@ export default function EventRow({
                     </a>
                   )}
 
-                  {/* Only the update owner can manage their updates */}
                   {u.createdBy?.adminId && canManage && (
                     <div className="mt-2 flex gap-2">
                       <button
@@ -143,14 +134,10 @@ export default function EventRow({
                       >
                         Delete Update
                       </button>
-                    </div>
-                  )}
-                </li>
-              ))}
+                    </div>)}
+                </li>))}
             </ul>
           </div>
-        </div>
-      )}
-    </div>
-  );
+        </div>)}
+    </div>);
 }

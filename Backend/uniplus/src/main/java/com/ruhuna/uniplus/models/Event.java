@@ -47,7 +47,7 @@ public class Event {
         this.createdBy = createdBy;
     }
 
-    //getters
+
     public Long getEventId() {
         return eventId;
     }
@@ -84,7 +84,7 @@ public class Event {
         return updates;
     }
 
-    //setters
+
     public void setEventId(Long eventId) {
         this.eventId = eventId;
     }

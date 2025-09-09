@@ -16,7 +16,7 @@ public class EventUpdateRequest {
         this.link = link;
     }
 
-    //getters
+
 
     public String getTitle() {
         return title;
@@ -34,7 +34,7 @@ public class EventUpdateRequest {
         return link;
     }
 
-    //setters
+
 
     public void setTitle(String title) {
         this.title = title;
