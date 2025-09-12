@@ -88,7 +88,7 @@ public class EventController {
         ev.setDescription(req.getDescription());
         ev.setVenue(req.getVenue());
         ev.setEventDate(req.getEventDate());
-        ev.setImageUrl(req.getImageUrl()); // make sure EventCreateRequest has imageUrl
+        ev.setImageUrl(req.getImageUrl());
         ev.setCreatedBy(admin);
         return eventRepo.save(ev);
     }

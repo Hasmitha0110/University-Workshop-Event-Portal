@@ -41,6 +41,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+
             Optional<Admin> adminOpt = adminRepo.findByEmail(username);
 
             if (adminOpt.isPresent() && jwtUtil.validateToken(jwt, username)){
