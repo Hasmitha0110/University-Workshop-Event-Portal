@@ -1,12 +1,25 @@
 package com.ruhuna.uniplus.dto;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class EventCreateRequest {
+
+    @NotBlank(message = "Title is required")
     private String title;
+
     private String description;
+
+    @NotBlank(message = "Venue is required")
     private String venue;
+
     private String imageUrl;
+
+    @NotNull(message = "Event date is required")
+    @FutureOrPresent(message = "Event date cannot be in the past")
     private LocalDate eventDate;
 
     public EventCreateRequest() {}

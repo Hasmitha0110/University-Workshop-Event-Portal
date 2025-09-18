@@ -29,7 +29,7 @@ public class AuthController {
         Admin admin =adminRepo.findByEmail(req.getEmail()).orElseThrow(() -> new RuntimeException("Invalid email or Password!"));
 
         if (!passwordEncoder.matches(req.getPassword(), admin.getPassword())){
-            throw new RuntimeException("Invalid email or Password!");
+            return ResponseEntity.status(401).body("Invalid email or Password!");
         }
 
         String token = jwtUtil.generateToken(admin.getEmail());

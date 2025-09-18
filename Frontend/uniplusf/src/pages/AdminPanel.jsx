@@ -95,18 +95,21 @@ export default function AdminPanel() {
         <h1 className="text-2xl sm:text-3xl font-extrabold">Admin Dashboard</h1>
         <div className="flex items-center gap-2">
           <input
+          id="searchInput"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name…"
             className="bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold w-56"
           />
           <button
+            id="searchBtn"
             onClick={() => fetchEvents(search)}
             className="bg-gold text-ink px-4 py-2 rounded-lg font-semibold hover:opacity-90 hover:text-maroon"
           >
             Search
           </button>
           <button
+          id="createEventBtn"
             onClick={onOpenCreate}
             className="bg-maroon text-paper px-4 py-2 rounded-lg font-semibold hover:opacity-90 hover:text-gold"
           >

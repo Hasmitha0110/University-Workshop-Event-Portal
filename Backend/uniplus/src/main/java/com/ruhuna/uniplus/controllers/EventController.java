@@ -6,9 +6,14 @@ import com.ruhuna.uniplus.models.Admin;
 import com.ruhuna.uniplus.models.Event;
 import com.ruhuna.uniplus.repositories.AdminRepository;
 import com.ruhuna.uniplus.repositories.EventRepository;
+import com.ruhuna.uniplus.services.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,16 +29,8 @@ public class EventController {
     @Autowired
     private AdminRepository adminRepo;
 
-    private String computeStatus(LocalDate eventDate) {
-        LocalDate today = LocalDate.now();
-        if(eventDate.isAfter(today)){
-            return "Upcoming";
-        } else if (eventDate.isEqual(today)) {
-            return "Ongoing";
-        }else {
-            return "Concluded";
-        }
-    }
+    @Autowired
+    private EventService eventService;
 
     @GetMapping
     public List<EventResponse> getAll(@RequestParam(name = "search", required = false) String search) {
@@ -51,7 +48,7 @@ public class EventController {
                         ev.getVenue(),
                         ev.getEventDate(),
                         ev.getImageUrl(),
-                        computeStatus(ev.getEventDate()),
+                        eventService.computeStatus(ev.getEventDate()),
                         ev.getCreatedBy() != null ? ev.getCreatedBy().getAdminId() : null,
                         ev.getCreatedBy() != null ? ev.getCreatedBy().getName() : null
                 )
@@ -69,17 +66,17 @@ public class EventController {
                 ev.getVenue(),
                 ev.getEventDate(),
                 ev.getImageUrl(),
-                computeStatus(ev.getEventDate()),
+                eventService.computeStatus(ev.getEventDate()),
                 ev.getCreatedBy() != null ? ev.getCreatedBy().getAdminId() : null,
                 ev.getCreatedBy() != null ? ev.getCreatedBy().getName() : null
         );
     }
 
     @PostMapping
-    public Event create(@RequestBody EventCreateRequest req, Authentication auth) {
+    public Event create(@RequestBody @Valid EventCreateRequest req, Authentication auth) {
 
         if (auth == null || auth.getName() == null) {
-            throw new RuntimeException("Unauthenticated - please login");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"Unauthenticated - please login");
         }
 
         Admin admin = adminRepo.findByEmail(auth.getName()).orElseThrow(() -> new RuntimeException("Logged in admin not found"));
@@ -94,7 +91,7 @@ public class EventController {
     }
 
     @PutMapping("/{eventId}")
-    public Event update(@PathVariable Long eventId, @RequestBody EventCreateRequest req, Authentication auth) {
+    public Event update(@PathVariable Long eventId, @RequestBody @Valid EventCreateRequest req, Authentication auth) {
         Event ev = eventRepo.findById(eventId).orElseThrow();
         Admin admin = adminRepo.findByEmail(auth.getName()).orElseThrow();
 

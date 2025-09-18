@@ -37,6 +37,7 @@ export default function EventFormModal({ initial, onClose, onSave }) {
         <div>
           <label className="text-sm text-white/80">Title</label>
           <input
+          id="eventTitle"
             className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
@@ -57,6 +58,7 @@ export default function EventFormModal({ initial, onClose, onSave }) {
           <div>
             <label className="text-sm text-white/80">Venue</label>
             <input
+            id="eventVenue"
               className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
               value={form.venue}
               onChange={(e) => setForm({ ...form, venue: e.target.value })}
@@ -65,6 +67,7 @@ export default function EventFormModal({ initial, onClose, onSave }) {
           <div>
             <label className="text-sm text-white/80">Date</label>
             <input
+            id="eventDate"
               type="date"
               className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
               value={form.eventDate}
@@ -83,6 +86,7 @@ export default function EventFormModal({ initial, onClose, onSave }) {
             Cancel
           </button>
           <button
+            id="eventSubmitBtn"
             type="submit"
             className="px-4 py-2 rounded-lg bg-gold text-ink font-semibold hover:opacity-90 hover:text-maroon"
           >

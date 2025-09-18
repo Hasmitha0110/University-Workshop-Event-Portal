@@ -38,11 +38,13 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink
+            id="nav-browse"
               to="/browse"
               className={({ isActive }) =>`${linkBase} ${isActive ? activeLink : inactiveLink}`}>Browse Events</NavLink>
           </li>
           <li>
             <NavLink
+            id="nav-admin"
               to="/admin"
               className={({ isActive }) =>`${linkBase} ${isActive ? activeLink : inactiveLink}`}>Admin Dashboard</NavLink>
           </li>
