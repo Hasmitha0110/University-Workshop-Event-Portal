@@ -18,7 +18,7 @@ jobs:
           MYSQL_USER: Hasmitha
           MYSQL_PASSWORD: password1234
         ports:
-          - 3307:3307
+          - 3306:3306
         options: >-
           --health-cmd="mysqladmin ping -h localhost -p$password1234"
           --health-interval=5s --health-timeout=5s --health-retries=10
@@ -44,14 +44,14 @@ jobs:
         run: |
           echo "Waiting for MySQL to be ready..."
           for i in {1..30}; do
-            mysql -h 127.0.0.1 -P 3307 -u root -ppassword1234 -e "SELECT 1" && break
+            mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "SELECT 1" && break
             echo "waiting..."
             sleep 2
           done
 
       - name: Create test DB (in case image didn't create)
         run: |
-          mysql -h 127.0.0.1 -P 3307 -u root -ppassword1234 -e "CREATE DATABASE IF NOT EXISTS uniplus_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; \
+          mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "CREATE DATABASE IF NOT EXISTS uniplus_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; \
           CREATE USER IF NOT EXISTS 'Hasmitha'@'%' IDENTIFIED BY 'password1234'; \
           GRANT ALL ON uniplus_test.* TO 'Hasmitha'@'%'; FLUSH PRIVILEGES;" || true
 
