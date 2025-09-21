@@ -3,10 +3,12 @@ package com.ruhuna.uniplus.ui;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+@Tag("ui")
 public abstract class UiTestBase {
     protected WebDriver driver;
     protected final String baseUrl = "http://localhost:5173";
