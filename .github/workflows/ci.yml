@@ -57,18 +57,8 @@ jobs:
           mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "GRANT ALL PRIVILEGES ON uniplus_test.* TO 'Hasmitha'@'%';"
           mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "FLUSH PRIVILEGES;"
 
-      # ---------- Backend (Maven) ----------
-      - name: Build & run backend tests (Maven)
-        working-directory: ./Backend/uniplus
-        env:
-          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/uniplus_test
-          SPRING_DATASOURCE_USERNAME: Hasmitha
-          SPRING_DATASOURCE_PASSWORD: password1234
-        run: |
-          java -version
-          mvn clean verify -Djunit.jupiter.tags.exclude=ui1,ui2,ui3
 
-      # ---------- Frontend (Vite / Node) ----------
+             # ---------- Frontend (Vite / Node) ----------
       - name: Install frontend dependencies
         working-directory: ./frontend/uniplusf
         run: |
@@ -83,4 +73,19 @@ jobs:
       - name: Run frontend tests (skipped - no test script)
         working-directory: ./frontend/uniplusf
         run: |
+          npm run preview -- --host 0.0.0.0 --port 5173 &
+          sleep 10 # Wait for server to start
           echo "No test script found in package.json, skipping frontend tests."
+
+      # ---------- Backend (Maven) ----------
+      - name: Build & run backend tests (Maven)
+        working-directory: ./Backend/uniplus
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/uniplus_test
+          SPRING_DATASOURCE_USERNAME: Hasmitha
+          SPRING_DATASOURCE_PASSWORD: password1234
+        run: |
+          java -version
+          mvn clean verify -Djunit.jupiter.tags.exclude=ui1,ui2,ui3
+
+   
