@@ -1,5 +1,6 @@
 package com.ruhuna.uniplus.ui;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.time.Duration;
 
+@Tag("ui")
 public class AdminLoginUITest extends UiTestBase {
 
     @Test

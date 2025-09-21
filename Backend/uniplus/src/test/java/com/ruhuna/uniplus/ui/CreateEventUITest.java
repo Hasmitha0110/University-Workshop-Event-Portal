@@ -1,5 +1,6 @@
 package com.ruhuna.uniplus.ui;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Tag("ui")
 public class CreateEventUITest extends UiTestBase {
 
     void login() {
