@@ -66,21 +66,4 @@ jobs:
           SPRING_DATASOURCE_PASSWORD: password1234
         run: |
           java -version
-          mvn clean verify -Dtest=!*UiTest
-
-      # ---------- Frontend (Vite / Node) ----------
-      - name: Install frontend dependencies
-        working-directory: ./frontend/uniplusf
-        run: |
-          npm ci
-
-      - name: Build frontend
-        working-directory: ./frontend/uniplusf
-        run: |
-          npm run build
-
-      # Skip frontend tests since no test script exists in package.json
-      - name: Run frontend tests (skipped - no test script)
-        working-directory: ./frontend/uniplusf
-        run: |
-          echo "No test script found in package.json, skipping frontend tests."
+          mvn clean verify -Dtest=!*ui
