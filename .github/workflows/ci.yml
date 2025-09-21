@@ -61,7 +61,8 @@ jobs:
         run: |
           # show java/mvn versions
           java -version
-          mvn -B -V clean verify -Djunit.jupiter.execution.exclude.tags=ui
+          mvn clean verify -Djunit.jupiter.tags.exclude=ui
+
 
       # ---------- Frontend (Vite / Node) ----------
       - name: Install frontend dependencies
