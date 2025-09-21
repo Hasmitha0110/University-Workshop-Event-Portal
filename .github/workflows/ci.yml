@@ -38,7 +38,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          # cache: 'npm'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/uniplusf/package-lock.json'
 
       - name: Wait for MySQL to be ready
         run: |
@@ -49,24 +50,27 @@ jobs:
             sleep 2
           done
 
-      - name: Create test DB (in case image didn't create)
+      - name: Create test DB and user
         run: |
-          mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "CREATE DATABASE IF NOT EXISTS uniplus_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; \
-          CREATE USER IF NOT EXISTS 'Hasmitha'@'%' IDENTIFIED BY 'password1234'; \
-          GRANT ALL ON uniplus_test.* TO 'Hasmitha'@'%'; FLUSH PRIVILEGES;" || true
+          mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "CREATE DATABASE IF NOT EXISTS uniplus_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+          mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "CREATE USER IF NOT EXISTS 'Hasmitha'@'%' IDENTIFIED BY 'password1234';"
+          mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "GRANT ALL PRIVILEGES ON uniplus_test.* TO 'Hasmitha'@'%';"
+          mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "FLUSH PRIVILEGES;"
 
       # ---------- Backend (Maven) ----------
       - name: Build & run backend tests (Maven)
-        working-directory: ./Backend/uniplus  # <--- update if your backend is at repo root or in a different folder
+        working-directory: ./Backend/uniplus
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/uniplus_test
+          SPRING_DATASOURCE_USERNAME: Hasmitha
+          SPRING_DATASOURCE_PASSWORD: password1234
         run: |
-          # show java/mvn versions
           java -version
           mvn clean verify -Djunit.jupiter.tags.exclude=ui1,ui2,ui3
 
-
       # ---------- Frontend (Vite / Node) ----------
       - name: Install frontend dependencies
-        working-directory: ./frontend/uniplusf  # <--- update if your frontend is in another folder (or remove this line if frontend is repo root)
+        working-directory: ./frontend/uniplusf
         run: |
           npm ci
 
@@ -75,8 +79,8 @@ jobs:
         run: |
           npm run build
 
-      - name: Run frontend tests
+      # Skip frontend tests since no test script exists in package.json
+      - name: Run frontend tests (skipped - no test script)
         working-directory: ./frontend/uniplusf
         run: |
-          # Will run `npm test`. Make sure package.json has a test script (see instructions).
-          npm test
+          echo "No test script found in package.json, skipping frontend tests."
