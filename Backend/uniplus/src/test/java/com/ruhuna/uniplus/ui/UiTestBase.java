@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-@Tag("ui")
+@Tag("ui3")
 public abstract class UiTestBase {
     protected WebDriver driver;
     protected final String baseUrl = "http://localhost:5173";

@@ -61,7 +61,7 @@ jobs:
         run: |
           # show java/mvn versions
           java -version
-          mvn clean verify -Djunit.jupiter.tags.exclude=ui
+          mvn clean verify -Djunit.jupiter.tags.exclude=ui1,ui2,ui3
 
 
       # ---------- Frontend (Vite / Node) ----------

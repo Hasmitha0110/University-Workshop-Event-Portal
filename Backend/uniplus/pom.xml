@@ -222,7 +222,7 @@
                 <configuration>
                     <properties>
                         <!-- Exclude tests with @Tag("ui") -->
-                        <configurationParameters>junit.jupiter.tags.exclude=ui</configurationParameters>
+                        <configurationParameters>junit.jupiter.tags.exclude=ui1,ui2,ui3</configurationParameters>
                     </properties>
                 </configuration>
             </plugin>

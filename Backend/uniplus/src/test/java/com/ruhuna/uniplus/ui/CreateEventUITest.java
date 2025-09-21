@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Tag("ui")
+@Tag("ui2")
 public class CreateEventUITest extends UiTestBase {
 
     void login() {
