@@ -1,10 +1,10 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -13,70 +13,56 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: password1234
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: uniplus_test
           MYSQL_USER: Hasmitha
           MYSQL_PASSWORD: password1234
         ports:
           - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping -h localhost -p$password1234"
-          --health-interval=5s --health-timeout=5s --health-retries=10
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+    
+    # Backend setup
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    
+    # Frontend setup
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: frontend/uniplusf/package-lock.json
+    
+    # Install frontend dependencies
+    - name: Install frontend dependencies
+      run: npm ci
+      working-directory: ./frontend/uniplusf
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-          cache: 'maven'
+    # Build frontend
+    - name: Build frontend
+      run: npm run build
+      working-directory: ./frontend/uniplusf
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          # cache: 'npm'
+    # Run backend tests
+    - name: Run backend tests
+      run: mvn test
+      env:
+        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/uniplus_test
+        SPRING_DATASOURCE_USERNAME: Hasmitha
+        SPRING_DATASOURCE_PASSWORD: password1234
 
-      - name: Wait for MySQL to be ready
-        run: |
-          echo "Waiting for MySQL to be ready..."
-          for i in {1..30}; do
-            mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "SELECT 1" && break
-            echo "waiting..."
-            sleep 2
-          done
-
-      - name: Create test DB (in case image didn't create)
-        run: |
-          mysql -h 127.0.0.1 -P 3306 -u root -ppassword1234 -e "CREATE DATABASE IF NOT EXISTS uniplus_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; \
-          CREATE USER IF NOT EXISTS 'Hasmitha'@'%' IDENTIFIED BY 'password1234'; \
-          GRANT ALL ON uniplus_test.* TO 'Hasmitha'@'%'; FLUSH PRIVILEGES;" || true
-
-      # ---------- Backend (Maven) ----------
-      - name: Build & run backend tests (Maven)
-        working-directory: ./Backend/uniplus  # <--- update if your backend is at repo root or in a different folder
-        run: |
-          # show java/mvn versions
-          java -version
-          mvn clean verify -Djunit.jupiter.tags.exclude=ui1,ui2,ui3
-
-
-      # ---------- Frontend (Vite / Node) ----------
-      - name: Install frontend dependencies
-        working-directory: ./frontend/uniplusf  # <--- update if your frontend is in another folder (or remove this line if frontend is repo root)
-        run: |
-          npm ci
-
-      - name: Build frontend
-        working-directory: ./frontend/uniplusf
-        run: |
-          npm run build
-
-      - name: Run frontend tests
-        working-directory: ./frontend/uniplusf
-        run: |
-          # Will run `npm test`. Make sure package.json has a test script (see instructions).
-          npm test
+    # Run UI tests
+    - name: Run UI tests
+      run: mvn test -Dtest=*UiTest
+      env:
+        BASE_URL: http://localhost:5173
+        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/uniplus_test
+        SPRING_DATASOURCE_USERNAME: Hasmitha
+        SPRING_DATASOURCE_PASSWORD: password1234

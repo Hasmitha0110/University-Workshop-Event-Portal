@@ -19,7 +19,6 @@ public class AdminLoginUITest extends UiTestBase {
         driver.findElement(By.id("password")).sendKeys("secret123");
         driver.findElement(By.id("loginBtn")).click();
 
-        // Navigate to admin dashboard automatically via your code, then assert
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.urlContains("/admin"));
 

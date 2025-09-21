@@ -17,7 +17,12 @@ public abstract class UiTestBase {
     void setUpDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        // options.addArguments("--headless=new"); // enable headless for CI
+        if (System.getenv("CI") != null) {
+            options.addArguments("--headless=new");
+        }
+        options.addArguments("--window-size=1280,900");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--window-size=1280,900");
         driver = new ChromeDriver(options);
     }

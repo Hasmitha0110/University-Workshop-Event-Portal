@@ -39,7 +39,6 @@ public class CreateEventUITest extends UiTestBase {
         dateField.sendKeys(date);
         driver.findElement(By.id("eventSubmitBtn")).click();
 
-        // Verify it appears in the list
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(),'Selenium Workshop')]")));
 
