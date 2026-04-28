@@ -1,7 +1,6 @@
 # UniPlus - University Workshop & Event Portal
 
-![Demo Video Placeholder](https://github.com/user-attachments/assets/placeholder-video-id)
-*(Please replace the above link with your actual demonstration video link once uploaded to GitHub)*
+<video src="RV/Uniplus.mp4" controls width="100%"></video>
 
 ## 📖 About UniPlus
 UniPlus is a comprehensive university event and workshop management portal. It is designed to help university communities seamlessly plan, coordinate, and explore various events on campus.
