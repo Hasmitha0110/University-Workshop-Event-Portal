@@ -1,0 +1,6 @@
+projectKey=uniplus-backend
+serverUrl=http://localhost:9000
+serverVersion=25.9.0.112764
+dashboardUrl=http://localhost:9000/dashboard?id=uniplus-backend
+ceTaskId=aa82aa00-b6e2-40c2-b298-03ed9eaa5975
+ceTaskUrl=http://localhost:9000/api/ce/task?id=aa82aa00-b6e2-40c2-b298-03ed9eaa5975
